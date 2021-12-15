@@ -1,19 +1,8 @@
 let computerNumber = 0;
-let userInput = "";
+let userInput;
 let computerChoice = "";
 
-$(".play").click(function() {
-  userInput = $(".input").val();
-  if (
-    userInput !== "rock" &&
-    userInput !== "scissors" &&
-    userInput !== "paper"
-  ) {
-    $(".userChoice").text("Try Again");
-  } else {
-    $(".userChoice").text(userInput);
-  }
-
+function getRandomComputerChoice() {
   computerNumber;
   computerNumber = Math.random() * 4;
   computerNumber = Math.ceil(computerNumber);
@@ -29,6 +18,23 @@ $(".play").click(function() {
     computerChoice = "scissors";
     $(".computerChoice").text(computerChoice);
   }
+  return computerChoice;
+}
+
+$(".play").click(function() {
+  userInput = $(".input").val();
+  if (
+    userInput === "rock" ||
+    userInput === "scissors" ||
+    userInput === "paper"
+  ) {
+    $(".userChoice").text(userInput);
+  } else 
+    {
+      $(".userChoice").text("Try Again!");
+    }
+
+  let computerChoice = getRandomComputerChoice();
 
   if (userInput === computerChoice) {
     $(".result").text("Tie");
@@ -45,5 +51,5 @@ $(".play").click(function() {
   ) {
     $(".result").text("Computer Won!! :(");
   }
-  $("input").val(" ");
+  $(".input").val("");
 });
